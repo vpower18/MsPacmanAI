@@ -56,7 +56,7 @@ public class Evolution {
 		ArrayList<Rule> temp1 = new ArrayList<Rule>();
 		temp1.addAll(rulesA);
 		replaceRules(rulesA.get(posA), rulesB.get(posB), rulesA, rulesB);
-		if(random.nextInt(6)==0)
+		if(random.nextInt(4)==0)
 			mutate(rulesA);
 		return formatRules(rulesA);	
 	}	

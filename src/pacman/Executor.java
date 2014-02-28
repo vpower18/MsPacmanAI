@@ -104,16 +104,21 @@ public class Executor
 					topRules.set(2, "rules"+i+".txt");	
 				}
 			}
+			IO.saveFile("output.txt", "Gen: " + loop + ", High Score: " + topScores.get(0) + ", Best Rule: " + topRules.get(0) + "\n", true);
 		
 			String[] parentRules = {IO.loadFile(topRules.get(0)), IO.loadFile(topRules.get(1)), IO.loadFile(topRules.get(2))};
 			for(int i = 1; i <= numRuleSets; ++i){
 				String currentFile = "rules"+i+".txt";
 				if(!topRules.contains(currentFile)){
-					int x = random.nextInt(2);
+					int x = random.nextInt(4);
 					if(x==0)
 						IO.saveFile(currentFile, Evolution.getInstance().propogateRules(parentRules[1], parentRules[2]), false);
-					else
+					else if(x ==1)
 						IO.saveFile(currentFile, Evolution.getInstance().propogateRules(parentRules[2], parentRules[1]), false);
+					else if(x==2)
+						IO.saveFile(currentFile, Evolution.getInstance().propogateRules(parentRules[1], parentRules[0]), false);
+					else if(x==3)
+						IO.saveFile(currentFile, Evolution.getInstance().propogateRules(parentRules[2], parentRules[0]), false);
 				}
 			}
 			IO.saveFile(topRules.get(1), Evolution.getInstance().propogateRules(parentRules[1], parentRules[2]), false);
